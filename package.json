@@ -1,0 +1,18 @@
+{
+  "name": "workflows",
+  "version": "0.0.1",
+  "description": "workflows based on lynda course with ray villalobos\u001bb\u001bb\u001bb\u001bb\u001bb\u001bb\u001bb\u001bb\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bf\u001bf\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D",
+  "repository": {
+    "type": "git",
+    "url": "?.git"
+  },
+  "keywords": [
+    "gulp",
+    "browserify",
+    "sass",
+    "compass",
+    "mustache"
+  ],
+  "author": "Aleksander Moloniewicz",
+  "license": "ISC"
+}
