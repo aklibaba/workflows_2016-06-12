@@ -4,7 +4,7 @@
   "description": "workflows based on lynda course with ray villalobos\u001bb\u001bb\u001bb\u001bb\u001bb\u001bb\u001bb\u001bb\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bf\u001bf\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D",
   "repository": {
     "type": "git",
-    "url": "?.git"
+    "url": "https://github.com/aklibaba/workflows_2016-06-12.git"
   },
   "keywords": [
     "gulp",
@@ -16,6 +16,7 @@
   "author": "Aleksander Moloniewicz",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2",
     "gulp-util": "^3.0.7"
   },
   "license": "ISC"
