@@ -33,6 +33,10 @@ gulp.task('sass', function () {
     .pipe(gulp.dest( 'builds/development/css'));
 });
 
+
+gulp.task('default', ['coffee', 'scripts', 'sass']);
+
+
 // gulp.task('log', function () {
 //   gutil.log('stuff happened', 'Really it did', gutil.colors.cyan(1));
 // });
