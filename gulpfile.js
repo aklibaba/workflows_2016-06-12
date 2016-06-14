@@ -5,8 +5,9 @@ var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     compass = require('gulp-compass');
 
-var sassSources = ['components/sass/style.scss'];
 var coffeeSources = ['components/coffee/*.coffee'];
+var jsSources = ['components/scripts/**/*.js'];
+var sassSources = ['components/sass/style.scss'];
 
 gulp.task('coffee', function () {
   gulp.src(coffeeSources)
@@ -16,7 +17,7 @@ gulp.task('coffee', function () {
   });
 
 gulp.task('scripts', function () {
-  gulp.src('components/scripts/**/*.js')
+  gulp.src(jsSources)
     .pipe(concat('script.js'))
     .pipe(browserify())
     .pipe(gulp.dest('builds/development/js')
@@ -35,6 +36,12 @@ gulp.task('sass', function () {
 
 
 gulp.task('default', ['coffee', 'scripts', 'sass']);
+
+gulp.task('watch', function () {
+  gulp.watch(coffeeSources, ['coffee']);
+  gulp.watch(jsSources, ['scripts']);
+  gulp.watch(['components/sass/**/*.scss'], ['sass'])
+});
 
 
 // gulp.task('log', function () {
