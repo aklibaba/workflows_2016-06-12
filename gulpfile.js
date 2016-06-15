@@ -8,6 +8,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     minifyHTML = require('gulp-minify-html'),
     minifyJSON = require('gulp-jsonminify'),
+    imagemin = require('gulp-imagemin'),
+    pngcrush = require('imagemin-pngcrush'),
     compass = require('gulp-compass');
 
 // Separate declaration from assignment
@@ -41,6 +43,7 @@ var jsSources = ['components/scripts/**/*.js'];
 var sassSources = ['components/sass/style.scss'];
 var htmlSources = ['builds/development/**/*.html']; //not using (outputDir + '**/*.html') because if env=production it would watch builds/production/index.html, and that is not the source of the html
 var jsonSources = ['builds/development/js/**/*.json'];
+var imageSources = ['builds/development/images/**/*.*'];
 
 // process coffee scripts to javascript and store in components/scripts
 gulp.task('coffee', function () {
@@ -74,7 +77,7 @@ gulp.task('sass', function () {
 
 
 //run all tasks and then watch
-gulp.task('default', ['coffee', 'scripts', 'sass', 'connect', 'html', 'json', 'watch']);
+gulp.task('default', ['coffee', 'scripts', 'sass', 'connect', 'html', 'json', 'images', 'watch']);
 
 gulp.task('watch', function () {
   gulp.watch(coffeeSources, ['coffee']);
@@ -82,6 +85,7 @@ gulp.task('watch', function () {
   gulp.watch(['components/sass/**/*.scss'], ['sass']);
   gulp.watch(htmlSources, ['html']);
   gulp.watch(jsonSources, ['json']);
+  gulp.watch(imageSources, ['images']);
 });
 
 
@@ -105,6 +109,17 @@ gulp.task('json', function () {
   gulp.src(jsonSources)
     .pipe(gulpif(env==='production', minifyJSON()))
     .pipe(gulpif(env==='production', gulp.dest(outputDir + 'js/')))
+    .pipe(connect.reload());
+});
+
+gulp.task('images', function () {
+  gulp.src(imageSources)
+    .pipe(gulpif(env==='production', imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}], //normally when creating svg's they have viewbox element and we dont really need it
+      use: [pngcrush()]
+    })))
+    .pipe(gulpif(env==='production', gulp.dest(outputDir + 'images')))
     .pipe(connect.reload());
 });
 
