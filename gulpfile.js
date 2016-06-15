@@ -4,6 +4,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     browserify = require('gulp-browserify'),
     connect = require('gulp-connect'),
+    gulpif = require('gulp-if'),
+    uglify = require('gulp-uglify'),
     compass = require('gulp-compass');
 
 // Separate declaration from assignment
@@ -50,7 +52,8 @@ gulp.task('scripts', function () {
   gulp.src(jsSources)
     .pipe(concat('script.js'))
     .pipe(browserify()) //for loading jquery install npm jquery and in js file use $ = require('jquery'); without var for global
-    .pipe(gulp.dest(outputDir + 'js')
+    .pipe(gulpif(env === 'production', uglify())) //if env set to production then uglify
+    .pipe(gulp.dest(outputDir + 'js') 
     .on('error', gutil.log))
     .pipe(connect.reload()); //finish the task by reloading
 });
