@@ -272,3 +272,7 @@ section {
   -webkit-box-shadow: black 5px 5px 12px;
   box-shadow: black 5px 5px 12px;
 }
+
+.test {
+  color: #000;
+}
