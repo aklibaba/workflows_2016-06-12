@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     gulpif = require('gulp-if'),
     uglify = require('gulp-uglify'),
+    minifyHTML = require('gulp-minify-html'),
     compass = require('gulp-compass');
 
 // Separate declaration from assignment
@@ -37,7 +38,7 @@ if (env === 'development') {
 var coffeeSources = ['components/coffee/*.coffee'];
 var jsSources = ['components/scripts/**/*.js'];
 var sassSources = ['components/sass/style.scss'];
-var htmlSources = [outputDir + '**/*.html'];
+var htmlSources = ['builds/development/**/*.html']; //not using (outputDir + '**/*.html') because if env=production it would watch builds/production/index.html, and that is not the source of the html
 var jsonSources = [outputDir + 'js/**/*.json'];
 
 // process coffee scripts to javascript and store in components/scripts
@@ -93,6 +94,8 @@ gulp.task('connect', function () {
 //reload for html files
 gulp.task('html', function () {
   gulp.src(htmlSources)
+    .pipe(gulpif(env==='production', minifyHTML()))
+    .pipe(gulpif(env==='production', gulp.dest(outputDir)))
     .pipe(connect.reload());
 });
 
