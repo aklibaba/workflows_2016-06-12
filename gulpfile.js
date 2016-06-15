@@ -35,7 +35,7 @@ gulp.task('sass', function () {
 });
 
 
-gulp.task('default', ['coffee', 'scripts', 'sass']);
+gulp.task('default', ['coffee', 'scripts', 'sass', 'watch']);
 
 gulp.task('watch', function () {
   gulp.watch(coffeeSources, ['coffee']);
