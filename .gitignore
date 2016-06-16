@@ -4,3 +4,4 @@ node_modules
 builds/**/images/*
 .sass-cache
 /builds/development/images
+*.log
